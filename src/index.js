@@ -1,12 +1,16 @@
 import './styles.css';
 import 'material-design-icons/iconfont/material-icons.css';
+import * as basicLightbox from 'basiclightbox';
+import 'basiclightbox/src/styles/main.scss';
 
 import API from './js/fetchImages';
 import galleryTpl from './templates/images.hbs';
 import refs from './js/refs';
-import openModal from './js/modal';
 
 refs.searchFormRef.addEventListener('submit', inputValue);
+refs.galleryRef.addEventListener('click', openModal);
+refs.scrollButton.addEventListener('click', scrollToTop);
+
 function inputValue(event) {
   event.preventDefault();
 
@@ -20,9 +24,6 @@ function inputValue(event) {
   API.resetPage();
   refs.loadMoreRef.classList.add('is-hidden');
   API.fetchImages(API.searchQuery).then(hits => galleryMarkup(hits));
-
-  refs.modalRef.addEventListener('click', openModal);
-  openModal(event);
 }
 
 function galleryMarkup(img) {
@@ -31,11 +32,31 @@ function galleryMarkup(img) {
   refs.loadMoreRef.classList.remove('is-hidden');
 }
 refs.loadMoreRef.addEventListener('click', () => {
-  API.fetchImages(API.searchQuery).then(hits => galleryMarkup(hits));
+  API.fetchImages(API.searchQuery)
+    .then(hits => galleryMarkup(hits))
+    .then(() => {
+      window.scrollBy({
+        top: document.documentElement.clientHeight,
+        behavior: 'smooth',
+      });
+    });
   refs.loadMoreRef.classList.remove('is-hidden');
-
-  window.scrollBy({
-    top: document.documentElement.clientHeight,
-    behavior: 'smooth',
-  });
 });
+
+function openModal(event) {
+  event.preventDefault();
+  if (event.target.nodeName === 'IMG') {
+    basicLightbox
+      .create(
+        `
+    <img src="${event.target.getAttribute(
+      'data-source',
+    )}" width="800" height="600">
+`,
+      )
+      .show();
+  }
+}
+function scrollToTop() {
+  window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+}

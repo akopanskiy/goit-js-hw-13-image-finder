@@ -18,6 +18,9 @@ body {
    */
   background-image: url('./images/bg-pattern.png');
 }
+input {
+  border-radius: 7px;
+}
 .search-form {
   display: flex;
   justify-content: center;
@@ -34,6 +37,7 @@ body {
     #053852 -1px -1px;
   text-decoration: none;
   user-select: none;
+  margin-left: 10px;
   padding: 0.3em 0.7em;
   outline: none;
   border-radius: 7px;
@@ -137,4 +141,29 @@ span {
 }
 .is-hidden {
   display: none;
+}
+
+.scroll-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 99;
+  outline: none;
+  border: 1px solid #333;
+  cursor: pointer;
+  display: inline-block;
+  padding: 7px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #fff;
+  background-image: -webkit-linear-gradient(45deg, #ffc107 0%, #ff8b5f 100%);
+  background-image: linear-gradient(45deg, #ffc107 0%, #ff8b5f 100%);
+  transition: 0.4s;
+}
+.scroll-top:hover {
+  background-image: -webkit-linear-gradient(45deg, #ffc107 0%, #f76a35 100%);
+  background-image: linear-gradient(45deg, #ffc107 0%, #f76a35 100%);
+}
+.button-scroll-text {
+  color: red;
 }
