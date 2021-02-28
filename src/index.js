@@ -41,6 +41,7 @@ refs.loadMoreRef.addEventListener('click', () => {
       });
     });
   refs.loadMoreRef.classList.remove('is-hidden');
+  refs.scrollButton.classList.remove('is-hidden');
 });
 
 function openModal(event) {

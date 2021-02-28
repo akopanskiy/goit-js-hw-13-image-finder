@@ -76,9 +76,6 @@ input {
 
   margin-right: auto;
   margin-left: auto;
-
-  /* position: relative;
-  display: inline-block; */
   font-size: 100%;
   font-weight: 700;
   color: #fff;
@@ -151,7 +148,7 @@ span {
   outline: none;
   border: 1px solid #333;
   cursor: pointer;
-  display: inline-block;
+  /* display: inline-block; */
   padding: 7px 20px;
   border-radius: 25px;
   text-decoration: none;
